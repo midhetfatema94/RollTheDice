@@ -13,7 +13,7 @@ struct RollHistoryView: View {
     var body: some View {
         List {
             ForEach(results.results, content: {eachResult in
-                Text("\(eachResult.result)")
+                Text("\(eachResult.result)/\(eachResult.faces)")
             })
         }
     }

@@ -10,10 +10,13 @@ import Foundation
 class Dice: Codable, Identifiable {
     var id = UUID()
     var result = 0
+    var faces = 6
 }
 
 class DiceResults: ObservableObject {
     @Published var results: [Dice]
+    var faces = 6
+    var haptics = true
     
     init() {
             

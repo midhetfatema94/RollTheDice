@@ -23,6 +23,12 @@ struct ContentView: View {
                     Image(systemName: "clock")
                     Text("History")
                 }
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
         }
         .environmentObject(results)
     }
