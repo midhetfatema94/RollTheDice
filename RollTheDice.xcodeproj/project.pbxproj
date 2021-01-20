@@ -11,6 +11,12 @@
 		838FF56325B5F89E004EEB68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF56225B5F89E004EEB68 /* ContentView.swift */; };
 		838FF56525B5F89F004EEB68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 838FF56425B5F89F004EEB68 /* Assets.xcassets */; };
 		838FF56825B5F89F004EEB68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 838FF56725B5F89F004EEB68 /* Preview Assets.xcassets */; };
+		838FF57125B84A3D004EEB68 /* RollTheDiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57025B84A3D004EEB68 /* RollTheDiceView.swift */; };
+		838FF57425B84A50004EEB68 /* RollHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57325B84A50004EEB68 /* RollHistoryView.swift */; };
+		838FF57725B84FFB004EEB68 /* DiceResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57625B84FFB004EEB68 /* DiceResults.swift */; };
+		838FF57B25B85073004EEB68 /* DiceResultModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57925B85073004EEB68 /* DiceResultModel.xcdatamodeld */; };
+		838FF57F25B850BA004EEB68 /* DiceResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57D25B850BA004EEB68 /* DiceResult+CoreDataClass.swift */; };
+		838FF58025B850BA004EEB68 /* DiceResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57E25B850BA004EEB68 /* DiceResult+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +26,12 @@
 		838FF56425B5F89F004EEB68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		838FF56725B5F89F004EEB68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		838FF56925B5F89F004EEB68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		838FF57025B84A3D004EEB68 /* RollTheDiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollTheDiceView.swift; sourceTree = "<group>"; };
+		838FF57325B84A50004EEB68 /* RollHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollHistoryView.swift; sourceTree = "<group>"; };
+		838FF57625B84FFB004EEB68 /* DiceResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceResults.swift; sourceTree = "<group>"; };
+		838FF57A25B85073004EEB68 /* DiceResultModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiceResultModel.xcdatamodel; sourceTree = "<group>"; };
+		838FF57D25B850BA004EEB68 /* DiceResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiceResult+CoreDataClass.swift"; sourceTree = "<group>"; };
+		838FF57E25B850BA004EEB68 /* DiceResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiceResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +64,14 @@
 		838FF55F25B5F89E004EEB68 /* RollTheDice */ = {
 			isa = PBXGroup;
 			children = (
+				838FF57D25B850BA004EEB68 /* DiceResult+CoreDataClass.swift */,
+				838FF57E25B850BA004EEB68 /* DiceResult+CoreDataProperties.swift */,
 				838FF56025B5F89E004EEB68 /* RollTheDiceApp.swift */,
 				838FF56225B5F89E004EEB68 /* ContentView.swift */,
+				838FF57625B84FFB004EEB68 /* DiceResults.swift */,
+				838FF57925B85073004EEB68 /* DiceResultModel.xcdatamodeld */,
+				838FF57325B84A50004EEB68 /* RollHistoryView.swift */,
+				838FF57025B84A3D004EEB68 /* RollTheDiceView.swift */,
 				838FF56425B5F89F004EEB68 /* Assets.xcassets */,
 				838FF56925B5F89F004EEB68 /* Info.plist */,
 				838FF56625B5F89F004EEB68 /* Preview Content */,
@@ -139,7 +157,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				838FF56325B5F89E004EEB68 /* ContentView.swift in Sources */,
+				838FF57B25B85073004EEB68 /* DiceResultModel.xcdatamodeld in Sources */,
 				838FF56125B5F89E004EEB68 /* RollTheDiceApp.swift in Sources */,
+				838FF57425B84A50004EEB68 /* RollHistoryView.swift in Sources */,
+				838FF57725B84FFB004EEB68 /* DiceResults.swift in Sources */,
+				838FF58025B850BA004EEB68 /* DiceResult+CoreDataProperties.swift in Sources */,
+				838FF57F25B850BA004EEB68 /* DiceResult+CoreDataClass.swift in Sources */,
+				838FF57125B84A3D004EEB68 /* RollTheDiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +352,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		838FF57925B85073004EEB68 /* DiceResultModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				838FF57A25B85073004EEB68 /* DiceResultModel.xcdatamodel */,
+			);
+			currentVersion = 838FF57A25B85073004EEB68 /* DiceResultModel.xcdatamodel */;
+			path = DiceResultModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 838FF55525B5F89E004EEB68 /* Project object */;
 }

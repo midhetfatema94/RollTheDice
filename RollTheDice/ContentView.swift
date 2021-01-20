@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    var results = DiceResults()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView {
+            RollTheDiceView()
+                .tabItem {
+                    Image(systemName: "gamecontroller")
+                    Text("Roll the Dice")
+                }
+
+            RollHistoryView()
+                .tabItem {
+                    Image(systemName: "clock")
+                    Text("History")
+                }
+        }
+        .environmentObject(results)
     }
 }
 
