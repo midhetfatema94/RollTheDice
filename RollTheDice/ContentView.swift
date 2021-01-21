@@ -10,27 +10,29 @@ import SwiftUI
 struct ContentView: View {
     var results = DiceResults()
     
+    @FetchRequest(entity: DiceResult.entity(), sortDescriptors: []) var diceResults: FetchedResults<DiceResult>
+    @Environment(\.managedObjectContext) var moc
+    
     var body: some View {
         TabView {
             RollTheDiceView()
+                .environment(\.managedObjectContext, moc)
                 .tabItem {
                     Image(systemName: "gamecontroller")
                     Text("Roll the Dice")
                 }
 
             RollHistoryView()
+                .environment(\.managedObjectContext, moc)
                 .tabItem {
                     Image(systemName: "clock")
                     Text("History")
                 }
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
         }
         .environmentObject(results)
+        .onAppear(perform: {
+            results.loadData(diceResults: self.diceResults)
+        })
     }
 }
 

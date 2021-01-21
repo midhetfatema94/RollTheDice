@@ -15,9 +15,12 @@
 		838FF57425B84A50004EEB68 /* RollHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57325B84A50004EEB68 /* RollHistoryView.swift */; };
 		838FF57725B84FFB004EEB68 /* DiceResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57625B84FFB004EEB68 /* DiceResults.swift */; };
 		838FF57B25B85073004EEB68 /* DiceResultModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57925B85073004EEB68 /* DiceResultModel.xcdatamodeld */; };
-		838FF57F25B850BA004EEB68 /* DiceResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57D25B850BA004EEB68 /* DiceResult+CoreDataClass.swift */; };
-		838FF58025B850BA004EEB68 /* DiceResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF57E25B850BA004EEB68 /* DiceResult+CoreDataProperties.swift */; };
 		838FF58325B85F88004EEB68 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF58225B85F88004EEB68 /* SettingsView.swift */; };
+		838FF58625B9B621004EEB68 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF58525B9B621004EEB68 /* Persistence.swift */; };
+		838FF5A125B9D680004EEB68 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF59D25B9D680004EEB68 /* Settings+CoreDataClass.swift */; };
+		838FF5A225B9D680004EEB68 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF59E25B9D680004EEB68 /* Settings+CoreDataProperties.swift */; };
+		838FF5A325B9D680004EEB68 /* DiceResult+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF59F25B9D680004EEB68 /* DiceResult+CoreDataClass.swift */; };
+		838FF5A425B9D680004EEB68 /* DiceResult+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FF5A025B9D680004EEB68 /* DiceResult+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +34,12 @@
 		838FF57325B84A50004EEB68 /* RollHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollHistoryView.swift; sourceTree = "<group>"; };
 		838FF57625B84FFB004EEB68 /* DiceResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceResults.swift; sourceTree = "<group>"; };
 		838FF57A25B85073004EEB68 /* DiceResultModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiceResultModel.xcdatamodel; sourceTree = "<group>"; };
-		838FF57D25B850BA004EEB68 /* DiceResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiceResult+CoreDataClass.swift"; sourceTree = "<group>"; };
-		838FF57E25B850BA004EEB68 /* DiceResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiceResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		838FF58225B85F88004EEB68 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		838FF58525B9B621004EEB68 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		838FF59D25B9D680004EEB68 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		838FF59E25B9D680004EEB68 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		838FF59F25B9D680004EEB68 /* DiceResult+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiceResult+CoreDataClass.swift"; sourceTree = "<group>"; };
+		838FF5A025B9D680004EEB68 /* DiceResult+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiceResult+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,11 +72,14 @@
 		838FF55F25B5F89E004EEB68 /* RollTheDice */ = {
 			isa = PBXGroup;
 			children = (
-				838FF57D25B850BA004EEB68 /* DiceResult+CoreDataClass.swift */,
-				838FF57E25B850BA004EEB68 /* DiceResult+CoreDataProperties.swift */,
+				838FF59D25B9D680004EEB68 /* Settings+CoreDataClass.swift */,
+				838FF59E25B9D680004EEB68 /* Settings+CoreDataProperties.swift */,
+				838FF59F25B9D680004EEB68 /* DiceResult+CoreDataClass.swift */,
+				838FF5A025B9D680004EEB68 /* DiceResult+CoreDataProperties.swift */,
 				838FF56025B5F89E004EEB68 /* RollTheDiceApp.swift */,
 				838FF56225B5F89E004EEB68 /* ContentView.swift */,
 				838FF58225B85F88004EEB68 /* SettingsView.swift */,
+				838FF58525B9B621004EEB68 /* Persistence.swift */,
 				838FF57625B84FFB004EEB68 /* DiceResults.swift */,
 				838FF57925B85073004EEB68 /* DiceResultModel.xcdatamodeld */,
 				838FF57325B84A50004EEB68 /* RollHistoryView.swift */,
@@ -160,14 +169,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				838FF56325B5F89E004EEB68 /* ContentView.swift in Sources */,
+				838FF5A325B9D680004EEB68 /* DiceResult+CoreDataClass.swift in Sources */,
 				838FF57B25B85073004EEB68 /* DiceResultModel.xcdatamodeld in Sources */,
+				838FF5A225B9D680004EEB68 /* Settings+CoreDataProperties.swift in Sources */,
 				838FF56125B5F89E004EEB68 /* RollTheDiceApp.swift in Sources */,
 				838FF58325B85F88004EEB68 /* SettingsView.swift in Sources */,
 				838FF57425B84A50004EEB68 /* RollHistoryView.swift in Sources */,
 				838FF57725B84FFB004EEB68 /* DiceResults.swift in Sources */,
-				838FF58025B850BA004EEB68 /* DiceResult+CoreDataProperties.swift in Sources */,
-				838FF57F25B850BA004EEB68 /* DiceResult+CoreDataClass.swift in Sources */,
 				838FF57125B84A3D004EEB68 /* RollTheDiceView.swift in Sources */,
+				838FF5A425B9D680004EEB68 /* DiceResult+CoreDataProperties.swift in Sources */,
+				838FF58625B9B621004EEB68 /* Persistence.swift in Sources */,
+				838FF5A125B9D680004EEB68 /* Settings+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

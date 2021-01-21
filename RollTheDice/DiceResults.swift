@@ -6,32 +6,50 @@
 //
 
 import Foundation
+import SwiftUI
 
-class Dice: Codable, Identifiable {
+class Dice: Identifiable {
     var id = UUID()
     var result = 0
     var faces = 6
 }
 
-class DiceResults: ObservableObject {
-    @Published var results: [Dice]
+class DiceSettings {
     var faces = 6
     var haptics = true
+}
+
+class DiceResults: ObservableObject {
+    @Published private(set) var results: [Dice]
+    @Published private(set) var diceSettings = DiceSettings()
     
     init() {
-            
         self.results = []
-        
-//        if let data = UserDefaults.standard.data(forKey: Self.userDefaultKey) {
-//            if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
-//                self.people = decoded
-//            }
-//        }
     }
     
-    private func save() {
-//        if let encoded = try? JSONEncoder().encode(self.results) {
-            
-//        }
+    func loadData(diceResults: FetchedResults<DiceResult>) {
+        self.results = diceResults.map {result in
+            let newItem = Dice()
+            newItem.id = result.id ?? UUID()
+            newItem.result = Int(result.result)
+            newItem.faces = Int(result.faces)
+            return newItem
+        }
+    }
+    
+    func loadSettingsData(settings: FetchedResults<Settings>) {
+        if let mySettings = settings.last {
+            self.diceSettings.faces = Int(mySettings.currentFaces)
+            self.diceSettings.haptics = mySettings.hapticControl
+        }
+    }
+    
+    func addItem(_ newItem: Dice) {
+        self.results.append(newItem)
+    }
+    
+    func updateSettings(haptics: Bool, faces: Int) {
+        self.diceSettings.faces = Int(faces)
+        self.diceSettings.haptics = haptics
     }
 }

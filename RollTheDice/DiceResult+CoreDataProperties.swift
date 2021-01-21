@@ -2,7 +2,7 @@
 //  DiceResult+CoreDataProperties.swift
 //  RollTheDice
 //
-//  Created by Waveline Media on 1/20/21.
+//  Created by Waveline Media on 1/21/21.
 //
 //
 
@@ -16,6 +16,7 @@ extension DiceResult {
         return NSFetchRequest<DiceResult>(entityName: "DiceResult")
     }
 
+    @NSManaged public var faces: Int16
     @NSManaged public var id: UUID?
     @NSManaged public var result: Int16
 

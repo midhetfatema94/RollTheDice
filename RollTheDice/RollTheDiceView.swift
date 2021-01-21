@@ -16,8 +16,10 @@ struct RollTheDiceView: View {
     @State private var newDegree: Double = 180
     @State private var shouldRandomize = false
     @State private var shouldAnimate = false
+    @State private var showSettings = false
     
     @EnvironmentObject var results: DiceResults
+    @Environment(\.managedObjectContext) var moc
     
     @State private var engine: CHHapticEngine?
     
@@ -25,43 +27,54 @@ struct RollTheDiceView: View {
     let animationTimer = Timer.publish(every: 5, on: .main, in: .common)
     
     var body: some View {
-        VStack(spacing: 50) {
-            if showingTransition {
-                DiceImageView()
-                    .transition(.pivot(oldDegree: self.oldDegree, newDegree: self.newDegree))
-            } else {
-                DiceImageView()
-            }
-            
-            Text("Result is: \(outcome)")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            Button(action: startRollDice, label: {
-                Text("Roll the dice")
-                    .font(.largeTitle)
+        NavigationView {
+            VStack(spacing: 50) {
+                if showingTransition {
+                    DiceImageView()
+                        .transition(.pivot(oldDegree: self.oldDegree, newDegree: self.newDegree))
+                } else {
+                    DiceImageView()
+                }
+                
+                Text("Result is: \(outcome)")
+                    .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding()
+                
+                Button(action: startRollDice, label: {
+                    Text("Roll the dice")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                })
+                .background(Color.black)
+                .clipShape(Capsule())
+            }
+            .onReceive(randomizeTimer, perform: {_ in
+                
+                guard self.shouldRandomize else { return }
+                
+                let dice = GKRandomDistribution(lowestValue: 1, highestValue: results.diceSettings.faces)
+                outcome = dice.nextInt()
             })
-            .background(Color.black)
-            .clipShape(Capsule())
+            .onReceive(animationTimer, perform: {_ in
+                
+                guard self.shouldAnimate else { return }
+                
+                self.shouldRandomize = false
+                self.completeRolling()
+            })
+            .onAppear(perform: prepareHaptics)
+            .navigationBarItems(trailing: Button(action: {
+                self.showSettings = true
+            }, label: {
+                Text("Settings")
+            }))
+            .sheet(isPresented: $showSettings, content: {
+                SettingsView()
+                    .environment(\.managedObjectContext, moc)
+            })
         }
-        .onReceive(randomizeTimer, perform: {_ in
-            
-            guard self.shouldRandomize else { return }
-            
-            let dice = GKRandomDistribution(lowestValue: 1, highestValue: results.faces)
-            outcome = dice.nextInt()
-        })
-        .onReceive(animationTimer, perform: {_ in
-            
-            guard self.shouldAnimate else { return }
-            
-            self.shouldRandomize = false
-            self.completeRolling()
-        })
-        .onAppear(perform: prepareHaptics)
     }
     
     func startRollDice() {
@@ -82,7 +95,7 @@ struct RollTheDiceView: View {
     
     func completeRolling() {
         //Gives a dice simulation from the GamePlayKit
-        let dice = GKRandomDistribution(lowestValue: 1, highestValue: results.faces)
+        let dice = GKRandomDistribution(lowestValue: 1, highestValue: results.diceSettings.faces)
         
         shouldAnimate = false
         engine?.stop(completionHandler: nil)
@@ -92,8 +105,19 @@ struct RollTheDiceView: View {
             
             let diceResult = Dice()
             diceResult.result = outcome
-            diceResult.faces = results.faces
-            results.results.append(diceResult)
+            diceResult.faces = results.diceSettings.faces
+            results.addItem(diceResult)
+            
+            do {
+                let newResult = DiceResult(context: self.moc)
+                newResult.faces = Int16(diceResult.faces)
+                newResult.id = diceResult.id
+                newResult.result = Int16(diceResult.result)
+
+                try self.moc.save()
+            } catch {
+                print("Could not add new item in core data: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -107,7 +131,7 @@ struct RollTheDiceView: View {
     }
     
     func prepareHaptics() {
-        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics && results.diceSettings.haptics == true else { return }
 
         do {
             self.engine = try CHHapticEngine()
@@ -119,7 +143,7 @@ struct RollTheDiceView: View {
     
     func startRollDiceHaptic() {
         // make sure that the device supports haptics
-        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics && results.diceSettings.haptics == true else { return }
         var events = [CHHapticEvent]()
 
         // create one intense, sharp tap
